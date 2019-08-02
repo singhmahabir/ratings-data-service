@@ -1,3 +1,17 @@
+#logging:
+#  level:
+#    .: error
+#    org.springframework: ERROR
+#    singh.mahabir.bis: ERROR
+# If you are not using eureka or spring.cloud then put spring.port in application.yml
+server:
+  port: 9093
+
+spring:
+  profiles:
+    active: "h2" # we can set active profile from here as well no need to pass at run time
+  main:
+    banner-mode: "off"
 # info property details shows in actuators info url http://localhost:8760/actuator/info
 info:
   name: '@project.artifactId@'
