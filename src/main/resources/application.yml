@@ -1,17 +1,13 @@
-#logging:
-#  level:
-#    .: error
-#    org.springframework: ERROR
-#    singh.mahabir.bis: ERROR
+# if spring.profiles=name is not mention then that is global property
 # If you are not using eureka or spring.cloud then put spring.port in application.yml
 server:
   port: 9093
-
+# we can set active profile from here as well no need to pass at run time
 spring:
   profiles:
-    active: "h2" # we can set active profile from here as well no need to pass at run time
-  main:
-    banner-mode: "off"
+    active: h2,eureka
+#  main:
+#    banner-mode: "off"
 # info property details shows in actuators info url http://localhost:8760/actuator/info
 info:
   name: '@project.artifactId@'
@@ -33,32 +29,5 @@ management:
       exposure:
         include: "*"
         exclude:
-        - env
+#        - env
         - beans
-
-# If you are using Admin server and want to registered your application as Admin client then add below configuration. 
-#spring:
-#  boot:
-#    admin:
-#      url: http://localhost:1111
-# below two properties are required when admin server is secured
-#      username: admin
-#      password: admin123 
-
-
-eureka:
-  client:
-    enabled: true # default true
-    registerWithEureka: true #you do not want your instances to be discovered whereas you just want do discover other instances.
-    fetchRegistry: true # Indicates whether this client should fetch eureka registry information from eureka server.
-    serviceUrl: #Map of availability zone to list of fully qualified URLs to communicate with eureka server
-      defaultZone : http://${eureka.instance.hostname}:8760/eureka/
-    
-
-# for "eureka.instance" related properties you can go through
-# https://github.com/spring-cloud/spring-cloud-netflix/blob/master/spring-cloud-netflix-eureka-client/src/main/java/org/springframework/cloud/netflix/eureka/EurekaInstanceConfigBean.java
-  instance:
-    hostname: localhost
-    preferIpAddress: true
-    leaseRenewalIntervalInSeconds: 3
- 
