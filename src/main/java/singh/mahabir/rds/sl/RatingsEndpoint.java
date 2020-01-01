@@ -13,26 +13,26 @@ import singh.mahabir.rds.sl.model.UserRequst;
 
 /**
  * Implementation of rating data service
- * 
+ *
  * @author MahabirSingh
  *
  */
 @RestController
 @Slf4j
 public class RatingsEndpoint implements IRatingsEndpoint {
-	
-	@Autowired
-	private IRatingService ratingService;
 
-	@Override
-	public ResponseEntity<UserRatings> getUsersRatingByUserId(@PathVariable String userId){
-		log.info("request coming for userId {}", userId);
-		return new ResponseEntity<>(ratingService.getUsersByUserid(userId), HttpStatus.OK);
-	}
+    @Autowired
+    private IRatingService ratingService;
 
-	@Override
-	public ResponseEntity<UserRequst> saveUserDetail(UserRequst userRequst) {
-		log.info("request coming for user creation {}", userRequst);
-		return ResponseEntity.ok(ratingService.saveUser(userRequst));
-	}
+    @Override
+    public ResponseEntity<UserRatings> getUsersRatingByUserId(@PathVariable String userId) {
+	log.info("request coming for userId {}", userId);
+	return new ResponseEntity<>(ratingService.getUsersByUserid(userId), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<UserRequst> saveUserDetail(UserRequst userRequst) {
+	log.info("request coming for user creation {}", userRequst);
+	return ResponseEntity.ok(ratingService.saveUser(userRequst));
+    }
 }

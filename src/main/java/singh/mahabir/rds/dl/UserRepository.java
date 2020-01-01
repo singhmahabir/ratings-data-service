@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	/**
 	 * It will retrieve the List of User by userId
 	 * 
-	 * @param bookId bookId
+	 * @param userId userId
 	 * @return BookEntity
 	 */
 	List<User> findByUserId(String userId);

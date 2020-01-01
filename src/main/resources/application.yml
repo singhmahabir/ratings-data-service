@@ -5,7 +5,14 @@ server:
 # we can set active profile from here as well no need to pass at run time
 spring:
   profiles:
-    active: h2,eureka
+#    active: h2,eureka #,logging,zipkin,security
+    active:
+      - h2
+      - eureka
+      - actuator
+#      - logging
+#      - zipkin
+      - security
 #  main:
 #    banner-mode: "off"
 # info property details shows in actuators info url http://localhost:8760/actuator/info
@@ -17,17 +24,3 @@ info:
   artifactId: '@project.artifactId@'
   packaging: '@project.packaging@'
   groupId: '@project.groupId@'
-
-# If you want to consumed Actuator restricted command but upto 1.x.x actuator version 
-#management:
-#  security:
-#    enabled: false
-# From 2.x.x you need to use below properties to enable restricted endpoints of actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        exclude:
-#        - env
-        - beans
